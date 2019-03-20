@@ -38,8 +38,8 @@ npm run build
 To start the backend, first create a `.env` file with the following environment variables in the `backend` directory:
 
 ```
-export DB_URL=<your-postgres-url>
-export FULL_NODE_URL=<your-full-node-url>
+export DB_URL="postgres://localhost:5432/filecoin_db"
+export FULL_NODE_URL="http://127.0.0.1:3453"
 export IS_MASTER=true
 export PEER_INFO_FILE=./peerId.json
 export HEARTBEAT_PORT=8080
@@ -52,7 +52,8 @@ Then, create a `peerId.json` by running the following command from your `backend
 ```bash
 node -e "require('peer-id').create({ bits: 1024 }, (err, id) => { if (err) { throw err; } console.log(JSON.stringify(id.toJSON(), null, 2))})" > peerId.json
 ```
-
+ npm run migrate:local
+ 
 The above steps only need to be performed on fresh installations. Next, you'll need to migrate the database via the following command:
 
 ```bash
